@@ -33,5 +33,6 @@ public class MoreOperations {
         //hashcode
         System.out.println(optional.hashCode());
         System.out.println(Optional.empty().hashCode());
+
     }
 }
