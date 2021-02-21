@@ -8,5 +8,6 @@ public class CommandDesignDemo {
     ACAutomationRemote remote = new ACAutomationRemote();
     remote.setCommand(()-> ac2.turnOn());
     remote.buttonPressed();
+
     }
 }
