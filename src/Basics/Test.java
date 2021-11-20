@@ -1,6 +1,8 @@
 package Basics;
 
+import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Test {
     //10,20,30,40,75,25
