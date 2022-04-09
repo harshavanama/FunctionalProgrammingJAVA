@@ -33,10 +33,19 @@ public class Practice {
         //       long l = 123456789012345678901 + 12345678;
 
         int[] intArray = new int[]{1, 1, 1};
-        System.out.println(solution(intArray));
+        Map<Integer,Integer> hMap = new HashMap<>();
+//        System.out.println(solution(intArray));
 
 //        System.out.println(helper("r#a#n#k#"));
 //        System.out.println(helper("###"));
+        String S = "WWW";
+
+        int[] insertion = new int[]{123, 1, 3};
+//        insertionSort(insertion);
+        Arrays.sort(insertion);
+        System.out.println(rotateString("abcde","cdeab"));
+        System.out.println(allPossibleStringsWithOneLessChar(S) + " count of different strings");
+
     }
 
     public static int degreeOfArray(List<Integer> arr) {
@@ -167,5 +176,85 @@ public class Practice {
         stack.forEach(character -> sb.append(character));
         return sb.toString();
     }
-}
 
+    public static void insertionSort(int[] ar){
+        int a; int b;
+        for(a = 0, b = a + 1; b < ar.length; a++, b++){
+            int temp = ar[b];
+            int i = a;
+            while(i >= 0 && temp < ar[i]){
+                ar[i + 1] = ar[i];
+                i--;
+            }
+            ar[i + 1] = temp;
+//            for(int j = 0; j < ar.length; j++){
+//            //    System.out.print(ar[j] + " ");
+//            }
+            System.out.print("\n");
+        }
+    }
+
+    public static boolean rotateString(String s, String goal) {
+        return s.length()==goal.length() && (s+s).contains(goal);
+//        if(s.length()!= goal.length())
+//            return false;
+//        else if (goal.equals(s))
+//            return true;
+//
+//        int i = 0, j =1;
+//        while(j < s.length()){
+//            StringBuilder sb3 = new StringBuilder();
+//            sb3.append(s,j,s.length());
+//            sb3.append(s, i , j);
+//            if(sb3.toString().equals(goal))
+//                return true;
+//            j++;
+//        }
+//        return false;
+    }
+
+    public List<Integer> majorityElement(int[] nums) {
+
+        int size = nums.length/3;
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i : nums)
+            map.put(i,map.getOrDefault(i,0)+1);
+        List<Integer> answer = new ArrayList<>();
+        for(int i : map.keySet()){
+           if(map.get(i) > size)
+            answer.add(i);
+        }
+        return answer;
+    }
+
+    public static int distributeCandies(int[] candyType) {
+
+        Set<Integer> set = new HashSet<>();
+        for(int candy : candyType)
+            set.add(candy);
+
+        return Math.min(candyType.length / 2, set.size());
+    }
+
+    public boolean backspaceCompare(String s, String t) {
+        return backspaceCompareHelper(s).equals(backspaceCompareHelper(t));
+    }
+    public String backspaceCompareHelper(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (Character c : s.toCharArray()) {
+            if (c.equals('#') && !stack.empty()) stack.pop();
+            else stack.push(c);
+        }
+        return stack.toString();
+    }
+
+    public static int allPossibleStringsWithOneLessChar(String S){
+        Set<String> hSet = new HashSet<>();
+        for(int i = 0 ; i < S.length(); i++){
+            StringBuilder sb = new StringBuilder(S);
+            sb.deleteCharAt(i);
+            hSet.add(sb.toString());
+        }
+        return hSet.size();
+    }
+}
